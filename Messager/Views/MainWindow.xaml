@@ -5,8 +5,37 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:MyMessager"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
-    <Grid>
-
-    </Grid>
+        Title="MainWindow" Height="550" Width="800">
+    <StackPanel>
+        <TextBox Margin="45"
+                 Text="{Binding UserName}">
+            
+        </TextBox>
+        <StackPanel Orientation="Horizontal">
+            <TextBox Width="500" Height="300"
+                     Text="{Binding MessageToSend}">
+                
+            </TextBox>
+            <ListView Width="250"
+                      ItemsSource="{Binding Messages}">
+                <ListView.ItemTemplate>
+                    <ItemContainerTemplate>
+                        <TextBlock>
+                            <TextBlock>
+                                <TextBlock.Text>
+                                    <MultiBinding StringFormat=" {0} {1}">
+                                        <Binding Path="Text"/>
+                                        <Binding Path="User.Name"/>
+                                    </MultiBinding>
+                                </TextBlock.Text>
+                            </TextBlock>
+                        </TextBlock>
+                    </ItemContainerTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+        </StackPanel>
+            <Button Margin="10"
+                    Width="150" Height="35"
+                    Command="{Binding SendMessageCommand}"></Button>
+    </StackPanel>
 </Window>
